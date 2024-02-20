@@ -25,11 +25,6 @@ public class MainRestController {
         return "Hello World";
     }
 
-    @GetMapping("/workout")
-    public String getDailyWorkout() {
-        return "Working out..";
-    }
-
     @GetMapping("/fortune")
     public String getDailyFortune() {
         Random random = new Random();
