@@ -8,8 +8,17 @@ import java.util.Random;
 
 @RestController
 public class MainRestController {
+    // Custom properties injection
     @Value("${properties.test}")
-    private String test;
+    private String testProperty;
+
+    @Value("${team.name}")
+    private String teamName;
+
+    @GetMapping("/customproperties")
+    public String getTestProperty() {
+        return String.format("%s - %s", this.testProperty, this.teamName);
+    }
 
     @GetMapping("/")
     public String helloWorld() {
