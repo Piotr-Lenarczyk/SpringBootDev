@@ -1,5 +1,7 @@
 package com.example.SpringBootDev.common;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,5 +12,17 @@ public class BaseballCoach implements Coach {
     @Override
     public String getDailyWorkout() {
         return "Spend 30 minutes in batting practice.";
+    }
+
+    @Override
+    @PostConstruct
+    public void startUp() {
+        System.out.println("Initializing " + getClass().getSimpleName());
+    }
+
+    @Override
+    @PreDestroy
+    public void cleanUp() {
+        System.out.println("Cleaning up " + getClass().getSimpleName());
     }
 }

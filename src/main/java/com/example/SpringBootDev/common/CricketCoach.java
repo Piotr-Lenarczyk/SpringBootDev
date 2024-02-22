@@ -1,14 +1,25 @@
 package com.example.SpringBootDev.common;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CricketCoach implements Coach {
     public CricketCoach() {
         System.out.println("Constructing " + getClass().getSimpleName());
+    }
+
+    @Override
+    @PostConstruct
+    public void startUp() {
+        System.out.println("Initializing " + getClass().getSimpleName());
+    }
+
+    @Override
+    @PreDestroy
+    public void cleanUp() {
+        System.out.println("Cleaning up " + getClass().getSimpleName());
     }
 
     @Override
