@@ -24,7 +24,16 @@ public class SpringBootDevApplication {
 			// readStudent(studentDAO);
 			// queryForStudents(studentDAO);
 			// queryByLastName(studentDAO);
+			updateStudent(studentDAO);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int id = 1;
+		Student student = studentDAO.findById(id);
+		student.setFirstName("Jonathan");
+		studentDAO.update(student);
+		System.out.println(student);
 	}
 
 	private void queryByLastName(StudentDAO studentDAO) {
