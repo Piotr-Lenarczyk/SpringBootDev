@@ -19,7 +19,12 @@ public class SpringBootDevApplication {
 		return runner -> {
 			//createStudent(studentDAO);
 			//createMultipleStudents(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		System.out.println(studentDAO.findById(1));
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
