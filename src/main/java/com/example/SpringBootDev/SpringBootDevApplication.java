@@ -24,8 +24,19 @@ public class SpringBootDevApplication {
 			// readStudent(studentDAO);
 			// queryForStudents(studentDAO);
 			// queryByLastName(studentDAO);
-			updateStudent(studentDAO);
+			// updateStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			// deleteStudents(studentDAO);
 		};
+	}
+
+	private void deleteStudents(StudentDAO studentDAO) {
+		System.out.format("Deleting all students, %d rows affected", studentDAO.deleteAll());
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		System.out.println("Deleting student");
+		studentDAO.delete(1);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
