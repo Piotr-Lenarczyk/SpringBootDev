@@ -2,11 +2,12 @@ package com.example.SpringBootDev.rest;
 
 import com.example.SpringBootDev.entity.Student;
 import jakarta.persistence.EntityManager;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,6 +26,25 @@ public class StudentController {
 
     @GetMapping("/students/{studentId}")
     public Student getStudent(@PathVariable int studentId) {
-        return this.entityManager.find(Student.class, studentId);
+        Student student = this.entityManager.find(Student.class, studentId);
+        if (student == null) {
+            throw new NotFoundException(String.format("Student ID %d not found", studentId));
+        }
+        return student;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleException(Exception exception) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setTimeStamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        // Handle NotFoundException
+        if (exception instanceof NotFoundException) {
+            errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        }
+        // Handle generic exceptions
+        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
