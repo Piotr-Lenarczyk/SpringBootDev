@@ -2,10 +2,8 @@ package com.example.SpringBootDev;
 
 import com.example.SpringBootDev.dao.StudentDAO;
 import com.example.SpringBootDev.entity.Student;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -16,19 +14,19 @@ public class SpringBootDevApplication {
 		SpringApplication.run(SpringBootDevApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
-		return runner -> {
-			// createStudent(studentDAO);
-			// createMultipleStudents(studentDAO);
-			// readStudent(studentDAO);
-			// queryForStudents(studentDAO);
-			// queryByLastName(studentDAO);
-			// updateStudent(studentDAO);
-			// deleteStudent(studentDAO);
-			// deleteStudents(studentDAO);
-		};
-	}
+	// @Bean
+	// public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+	// 	return runner -> {
+	// 		// createStudent(studentDAO);
+	// 		// createMultipleStudents(studentDAO);
+	// 		// readStudent(studentDAO);
+	// 		// queryForStudents(studentDAO);
+	// 		// queryByLastName(studentDAO);
+	// 		// updateStudent(studentDAO);
+	// 		// deleteStudent(studentDAO);
+	// 		// deleteStudents(studentDAO);
+	// 	};
+	// }
 
 	private void deleteStudents(StudentDAO studentDAO) {
 		System.out.format("Deleting all students, %d rows affected", studentDAO.deleteAll());

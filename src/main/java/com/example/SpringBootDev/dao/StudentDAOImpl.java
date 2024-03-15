@@ -3,7 +3,6 @@ package com.example.SpringBootDev.dao;
 import com.example.SpringBootDev.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +21,6 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    @Transactional // Makes this operation a transaction
     public Student save(Student student) {
         return this.entityManager.merge(student);
     }
@@ -48,14 +46,12 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    @Transactional
     public void delete(Integer id) {
         Student student = this.entityManager.find(Student.class, id);
         this.entityManager.remove(student);
     }
 
     @Override
-    @Transactional
     public int deleteAll() {
         return this.entityManager.createQuery("DELETE FROM Student").executeUpdate();
     }
