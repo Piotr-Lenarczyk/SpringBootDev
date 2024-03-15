@@ -23,8 +23,8 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     @Transactional // Makes this operation a transaction
-    public void save(Student student) {
-        this.entityManager.persist(student);
+    public Student save(Student student) {
+        return this.entityManager.merge(student);
     }
 
     @Override
@@ -45,12 +45,6 @@ public class StudentDAOImpl implements StudentDAO {
         TypedQuery<Student> query = this.entityManager.createQuery("FROM Student WHERE lastName=:lastName", Student.class);
         query.setParameter("lastName", lastName);
         return query.getResultList();
-    }
-
-    @Override
-    @Transactional
-    public void update(Student student) {
-        this.entityManager.merge(student);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class SpringBootDevApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 			// createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+			// createMultipleStudents(studentDAO);
 			// readStudent(studentDAO);
 			// queryForStudents(studentDAO);
 			// queryByLastName(studentDAO);
@@ -43,7 +43,7 @@ public class SpringBootDevApplication {
 		int id = 1;
 		Student student = studentDAO.findById(id);
 		student.setFirstName("Jonathan");
-		studentDAO.update(student);
+		studentDAO.save(student);
 		System.out.println(student);
 	}
 
