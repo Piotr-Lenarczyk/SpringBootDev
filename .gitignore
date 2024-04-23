@@ -7,6 +7,7 @@ target/
 /.mvn/wrapper/maven-wrapper.properties
 /mvnw
 /mvnw.cmd
+/sql-scripts/
 
 ### STS ###
 .apt_generated
