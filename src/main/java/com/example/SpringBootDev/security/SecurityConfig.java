@@ -41,7 +41,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/students").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/api/students").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PATCH, "/api/students/**").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasRole("ADMIN"));
+                        .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/hello").hasRole("EMPLOYEE"));
 
         //Use Basic Auth
         httpSecurity.httpBasic(Customizer.withDefaults());
