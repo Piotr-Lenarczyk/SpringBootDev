@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
 </head>
 <body>
-<p th:text="'The time on the server is ' + ${currentTime}"></p>
+<p th:text="'The time on the server is ' + ${currentTime}" class="clock"></p>
 </body>
 </html>
