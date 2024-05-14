@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 
@@ -31,6 +32,15 @@ public class TestController {
         String message = request.getParameter("studentName");
         message = message.toUpperCase();
         model.addAttribute("message", message);
+        model.addAttribute("currentTime", LocalDateTime.now());
+        return "helloworld";
+    }
+
+    @RequestMapping("/processFormV3")
+    public String autoCapitalize(@RequestParam("studentName") String studentName, Model model) {
+        studentName = studentName.concat(" automatically").toUpperCase();
+        model.addAttribute("message", studentName);
+        model.addAttribute("currentTime", LocalDateTime.now());
         return "helloworld";
     }
 }
