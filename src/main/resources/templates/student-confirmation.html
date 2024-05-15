@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+    <link rel="stylesheet" th:href="@{css/style.css}"/>
+</head>
+<body>
+<p>The student is confirmed: <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></p>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.example.SpringBootDev.rest;
+package com.example.SpringBootDev.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
