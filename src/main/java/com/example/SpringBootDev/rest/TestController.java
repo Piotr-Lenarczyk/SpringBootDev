@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,7 +18,7 @@ public class TestController {
         return "helloworld";
     }
 
-    @RequestMapping("/displayForm")
+    @GetMapping("/displayForm")
     public String displayForm() {
         return "helloworld-form";
     }
@@ -36,7 +37,7 @@ public class TestController {
         return "helloworld";
     }
 
-    @RequestMapping("/processFormV3")
+    @PostMapping("/processFormV3")
     public String autoCapitalize(@RequestParam("studentName") String studentName, Model model) {
         studentName = studentName.concat(" automatically").toUpperCase();
         model.addAttribute("message", studentName);
