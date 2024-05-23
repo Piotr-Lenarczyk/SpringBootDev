@@ -19,13 +19,17 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "country")
+    private String country;
+
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email) {
+    public Student(String firstName, String lastName, String email, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.country = country;
     }
 
     public int getId() {
@@ -60,6 +64,14 @@ public class Student {
         this.email = email;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -67,6 +79,7 @@ public class Student {
                 ", firstName='" + this.firstName + '\'' +
                 ", lastName='" + this.lastName + '\'' +
                 ", email='" + this.email + '\'' +
+                ", country='" + this.country + '\'' +
                 '}';
     }
 }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{css/style.css}"/>
 </head>
 <body>
-<p>The student is confirmed: <span th:text="${student.firstName} + ' ' + ${student.lastName}"></span></p>
+<p>The student is confirmed: <span
+        th:text="${student.firstName} + ' ' + ${student.lastName} + ' Country: ' + ${student.country}"></span></p>
 </body>
 </html>
