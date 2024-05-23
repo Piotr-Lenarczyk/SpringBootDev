@@ -2,6 +2,8 @@ package com.example.SpringBootDev.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -25,15 +27,19 @@ public class Student {
     @Column(name = "programming_language")
     private String programmingLanguage;
 
+    @Column(name = "operating_systems")
+    private List<String> operatingSystems;
+
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String country, String programmingLanguage) {
+    public Student(String firstName, String lastName, String email, String country, String programmingLanguage, List<String> operatingSystems) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.country = country;
         this.programmingLanguage = programmingLanguage;
+        this.operatingSystems = operatingSystems;
     }
 
     public int getId() {
@@ -84,6 +90,14 @@ public class Student {
         this.programmingLanguage = programmingLanguage;
     }
 
+    public List<String> getOperatingSystems() {
+        return operatingSystems;
+    }
+
+    public void setOperatingSystems(List<String> operatingSystems) {
+        this.operatingSystems = operatingSystems;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -93,6 +107,7 @@ public class Student {
                 ", email='" + this.email + '\'' +
                 ", country='" + this.country + '\'' +
                 ", programmingLanguage='" + this.programmingLanguage + '\'' +
+                ", operatingSystems='" + this.operatingSystems + '\'' +
                 '}';
     }
 }

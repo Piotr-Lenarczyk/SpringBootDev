@@ -6,8 +6,14 @@
     <link rel="stylesheet" th:href="@{css/style.css}"/>
 </head>
 <body>
-<p>The student is confirmed: <span
-        th:text="${student.firstName} + ' ' + ${student.lastName} + ' Country: ' + ${student.country} + ' Language: ' + ${student.programmingLanguage}"></span>
+<p>The student is confirmed:</p>
+<p> <span
+        th:text="${student.firstName} + ' ' + ${student.lastName} + ' Country: ' + ${student.country}
+            + ' Language: ' + ${student.programmingLanguage}"></span>
 </p>
+<p>Operating systems</p>
+<ul>
+    <li th:each="tempSystem: ${student.operatingSystems}" th:text="${tempSystem}"></li>
+</ul>
 </body>
 </html>
