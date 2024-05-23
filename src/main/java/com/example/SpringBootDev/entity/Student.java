@@ -22,14 +22,18 @@ public class Student {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "programming_language")
+    private String programmingLanguage;
+
     public Student() {
     }
 
-    public Student(String firstName, String lastName, String email, String country) {
+    public Student(String firstName, String lastName, String email, String country, String programmingLanguage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.country = country;
+        this.programmingLanguage = programmingLanguage;
     }
 
     public int getId() {
@@ -72,6 +76,14 @@ public class Student {
         this.country = country;
     }
 
+    public String getProgrammingLanguage() {
+        return programmingLanguage;
+    }
+
+    public void setProgrammingLanguage(String programmingLanguage) {
+        this.programmingLanguage = programmingLanguage;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -80,6 +92,7 @@ public class Student {
                 ", lastName='" + this.lastName + '\'' +
                 ", email='" + this.email + '\'' +
                 ", country='" + this.country + '\'' +
+                ", programmingLanguage='" + this.programmingLanguage + '\'' +
                 '}';
     }
 }
