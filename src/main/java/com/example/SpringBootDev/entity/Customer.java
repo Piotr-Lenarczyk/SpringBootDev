@@ -24,7 +24,8 @@ public class Customer {
     @Column(name = "passes")
     @Min(value = 0, message = "cannot be less than 0")
     @Max(value = 10, message = "cannot be more than 10")
-    private int passes;
+    @NotNull(message = "is required")
+    private Integer passes;
 
     @Column(name = "postal_code")
     @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "must follow XX-XXX format")
@@ -33,7 +34,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, int passes, String postalCode) {
+    public Customer(String firstName, String lastName, Integer passes, String postalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.passes = passes;
@@ -64,11 +65,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public int getPasses() {
+    public Integer getPasses() {
         return passes;
     }
 
-    public void setPasses(int passes) {
+    public void setPasses(Integer passes) {
         this.passes = passes;
     }
 
