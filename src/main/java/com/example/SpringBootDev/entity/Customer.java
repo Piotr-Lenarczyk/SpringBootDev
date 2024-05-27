@@ -1,10 +1,7 @@
 package com.example.SpringBootDev.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "customer")
@@ -29,13 +26,18 @@ public class Customer {
     @Max(value = 10, message = "cannot be more than 10")
     private int passes;
 
+    @Column(name = "postal_code")
+    @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "must follow XX-XXX format")
+    private String postalCode;
+
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, int passes) {
+    public Customer(String firstName, String lastName, int passes, String postalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.passes = passes;
+        this.postalCode = postalCode;
     }
 
     public int getId() {
@@ -70,6 +72,14 @@ public class Customer {
         this.passes = passes;
     }
 
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -77,6 +87,7 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", passes='" + passes + '\'' +
+                ", postalCode='" + postalCode + '\'' +
                 '}';
     }
 }

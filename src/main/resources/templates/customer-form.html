@@ -15,8 +15,10 @@
         <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
     </p>
     <p>Passes: <input type="text" th:field="*{passes}"/>
-        <!-- Add error message (if applicable) -->
         <span th:if="${#fields.hasErrors('passes')}" th:errors="*{passes}" class="error"></span>
+    </p>
+    <p>Postal code: <input type="text" th:field="*{postalCode}"/>
+        <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="error"></span>
     </p>
 
     <input type="submit" value="Submit"/>
