@@ -1,5 +1,6 @@
 package com.example.SpringBootDev.entity;
 
+import com.example.SpringBootDev.validation.CourseCode;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -31,14 +32,19 @@ public class Customer {
     @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "must follow XX-XXX format")
     private String postalCode;
 
+    @Column(name = "course_code")
+    @CourseCode(value = "CUST", message = "must start with 'CUST'")
+    private String courseCode;
+
     public Customer() {
     }
 
-    public Customer(String firstName, String lastName, Integer passes, String postalCode) {
+    public Customer(String firstName, String lastName, Integer passes, String postalCode, String courseCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.passes = passes;
         this.postalCode = postalCode;
+        this.courseCode = courseCode;
     }
 
     public int getId() {
@@ -81,6 +87,14 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -89,6 +103,7 @@ public class Customer {
                 ", lastName='" + lastName + '\'' +
                 ", passes='" + passes + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", courseCode='" + courseCode + '\'' +
                 '}';
     }
 }
