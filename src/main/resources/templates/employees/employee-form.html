@@ -12,6 +12,9 @@
     <p class="h4 mb-4">Create Employee</p>
     <hr>
     <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="POST">
+        <!-- When the form is initially loaded, it calls getters so there is no need for special handling -->
+        <!-- Data is prepolutated and can be changed -->
+        <input type="hidden" th:field="*{id}" class="form-control mb-4 w-25"/>
         <input type="text" th:field="*{firstName}" class="form-control mb-4 w-25" placeholder="First name"/>
         <input type="text" th:field="*{lastName}" class="form-control mb-4 w-25" placeholder="Last name"/>
         <input type="text" th:field="*{email}" class="form-control mb-4 w-25" placeholder="Email"/>

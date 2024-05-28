@@ -4,10 +4,7 @@ import com.example.SpringBootDev.entity.Employee;
 import com.example.SpringBootDev.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,5 +40,13 @@ public class EmployeeController {
         this.employeeService.save(employee);
         //Post/Redirect/Get pattern to prevent duplicate data submission
         return "redirect:/employees/list";
+    }
+
+    @GetMapping("/updateEmployee")
+    public String updateEmployee(@RequestParam("employeeId") int id, Model model) {
+        //Prepopulate the form
+        Employee employee = this.employeeService.findById(id);
+        model.addAttribute("employee", employee);
+        return "employees/employee-form";
     }
 }
