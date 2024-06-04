@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
 @Configuration
 public class SecurityConfiguration {
@@ -23,7 +24,23 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(configurer -> configurer.anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").loginProcessingUrl("/authenticate").permitAll()).logout(LogoutConfigurer::permitAll).build();
+        return httpSecurity.authorizeHttpRequests(configurer ->
+                        configurer
+                                .requestMatchers("/").hasRole("EMPLOYEE")
+                                .requestMatchers("/employees/**").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+                                .requestMatchers("/api").permitAll()
+                                .requestMatchers("/leaders/**").hasRole("MANAGER")
+                                .requestMatchers("/systems/**").hasRole("ADMIN")
+                                .anyRequest().authenticated()
+                )
+                .formLogin(form ->
+                        form.loginPage("/login").loginProcessingUrl("/authenticate").permitAll())
+                .logout(LogoutConfigurer::permitAll)
+                .build();
+    }
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect() {
+        return new SpringSecurityDialect();
     }
 }

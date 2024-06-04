@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,12 @@
 <body>
 <div class="container">
     <h3>Employee list</h3>
+    <hr>
+    <!-- Display username and roles -->
+    <p>User: <span sec:authentication="principal.username"></span></p>
+    <p>Role(s): <span sec:authentication="principal.authorities"></span></p>
+    <p><a th:href="@{/leaders}">Leaders</a></p>
+    <p><a th:href="@{/systems}">IT Administration</a></p>
     <hr>
     <a th:href="@{/employees/employeeForm}" class="btn btn-primary btn-sm mb-3">Add Employee</a>
     <table class="table table-bordered table-striped">
