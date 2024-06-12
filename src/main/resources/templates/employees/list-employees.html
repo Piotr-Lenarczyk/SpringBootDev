@@ -15,9 +15,12 @@
     <!-- Display username and roles -->
     <p>User: <span sec:authentication="principal.username"></span></p>
     <p>Role(s): <span sec:authentication="principal.authorities"></span></p>
-    <p><a th:href="@{/leaders}">Leaders</a></p>
-    <p><a th:href="@{/systems}">IT Administration</a></p>
-    <hr>
+    <div sec:authorize="hasRole('MANAGER')"> <!-- Display only for users with specific role -->
+        <p><a th:href="@{/leaders}">Leaders</a></p>
+    </div>
+    <div sec:authorize="hasRole('ADMIN')">
+        <p><a th:href="@{/systems}">IT Administration</a></p>
+    </div>
     <a th:href="@{/employees/employeeForm}" class="btn btn-primary btn-sm mb-3">Add Employee</a>
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
