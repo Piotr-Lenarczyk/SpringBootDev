@@ -33,9 +33,13 @@ public class SecurityConfiguration {
                                 .requestMatchers("/systems/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
+                //Login page
                 .formLogin(form ->
                         form.loginPage("/login").loginProcessingUrl("/authenticate").permitAll())
+                //Logout page
                 .logout(LogoutConfigurer::permitAll)
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied"))
                 .build();
     }
 
