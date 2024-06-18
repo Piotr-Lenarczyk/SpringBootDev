@@ -29,8 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findById(int theId) {
-        Optional<Employee> result = employeeRepository.findById(theId);
+    public Employee findById(int id) {
+        Optional<Employee> result = employeeRepository.findById(id);
 
         Employee theEmployee = null;
 
@@ -38,20 +38,20 @@ public class EmployeeServiceImpl implements EmployeeService {
             theEmployee = result.get();
         } else {
             // we didn't find the employee
-            throw new RuntimeException("Did not find employee id - " + theId);
+            throw new RuntimeException("Did not find employee id - " + id);
         }
 
         return theEmployee;
     }
 
     @Override
-    public Employee save(Employee theEmployee) {
-        return employeeRepository.save(theEmployee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
-    public void deleteById(int theId) {
-        employeeRepository.deleteById(theId);
+    public void deleteById(int id) {
+        employeeRepository.deleteById(id);
     }
 }
 
