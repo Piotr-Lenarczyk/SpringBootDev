@@ -16,6 +16,10 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
+    // References property in the OTHER table
+    // @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    // private Instructor instructor;
+
     public InstructorDetail() {
     }
 
