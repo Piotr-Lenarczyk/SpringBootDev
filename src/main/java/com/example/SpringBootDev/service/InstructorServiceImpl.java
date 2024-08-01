@@ -45,6 +45,6 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     @Transactional
     public void deleteById(int id) {
-        this.instructorRepository.deleteById(id);
+        this.instructorRepository.deleteInstructorById(id);
     }
 }

@@ -4,6 +4,7 @@ import com.example.SpringBootDev.entity.Course;
 import com.example.SpringBootDev.entity.Instructor;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -30,4 +31,21 @@ public class CustomInstructorRepositoryImpl implements CustomInstructorRepositor
         query.setParameter("data", id);
         return query.getSingleResult();
     }
+
+    @Override
+    @Transactional
+    public void deleteInstructorById(int id) {
+        Instructor instructor = this.entityManager.find(Instructor.class, id);
+
+        List<Course> courses = instructor.getCourses();
+
+        // Break association
+        for (Course course : courses) {
+            course.setInstructor(null);
+        }
+
+        this.entityManager.remove(instructor);
+    }
+
+
 }

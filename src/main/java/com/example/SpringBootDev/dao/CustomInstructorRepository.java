@@ -9,4 +9,6 @@ public interface CustomInstructorRepository {
     List<Course> findCoursesByInstructorId(int id);
 
     Instructor findInstructorByIdJoinFetch(int id);
+
+    void deleteInstructorById(int id);
 }
