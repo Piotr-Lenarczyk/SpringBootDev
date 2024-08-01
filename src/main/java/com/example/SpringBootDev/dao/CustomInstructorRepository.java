@@ -11,4 +11,6 @@ public interface CustomInstructorRepository {
     Instructor findInstructorByIdJoinFetch(int id);
 
     void deleteInstructorById(int id);
+
+    void saveCourse(Course course);
 }

@@ -47,5 +47,11 @@ public class CustomInstructorRepositoryImpl implements CustomInstructorRepositor
         this.entityManager.remove(instructor);
     }
 
+    @Override
+    @Transactional
+    public void saveCourse(Course course) {
+        this.entityManager.persist(course);
+    }
+
 
 }
