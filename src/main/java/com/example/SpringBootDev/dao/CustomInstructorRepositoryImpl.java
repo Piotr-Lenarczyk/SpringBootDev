@@ -49,8 +49,23 @@ public class CustomInstructorRepositoryImpl implements CustomInstructorRepositor
 
     @Override
     @Transactional
+    public void deleteCourseById(int id) {
+        this.entityManager.remove(this.entityManager.find(Course.class, id));
+    }
+
+    @Override
+    @Transactional
     public void saveCourse(Course course) {
         this.entityManager.persist(course);
+    }
+
+    @Override
+    public Course findCourseAndReviewsByCourseId(int id) {
+        TypedQuery<Course> query = this.entityManager.createQuery("SELECT c FROM Course c JOIN FETCH c.reviews " +
+                "WHERE c.id = :data", Course.class);
+        query.setParameter("data", id);
+
+        return query.getSingleResult();
     }
 
 
