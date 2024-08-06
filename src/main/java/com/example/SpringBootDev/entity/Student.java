@@ -128,7 +128,6 @@ public class Student {
                 ", country='" + country + '\'' +
                 ", programmingLanguage='" + programmingLanguage + '\'' +
                 ", operatingSystems=" + operatingSystems +
-                ", courses=" + courses +
                 '}';
     }
 }
