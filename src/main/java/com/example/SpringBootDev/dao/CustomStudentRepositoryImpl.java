@@ -3,6 +3,7 @@ package com.example.SpringBootDev.dao;
 import com.example.SpringBootDev.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CustomStudentRepositoryImpl implements CustomStudentRepository {
@@ -18,5 +19,17 @@ public class CustomStudentRepositoryImpl implements CustomStudentRepository {
         TypedQuery<Student> query = this.entityManager.createQuery("SELECT s FROM Student s JOIN FETCH s.courses WHERE s.id = :data", Student.class);
         query.setParameter("data", id);
         return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        this.entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int id) {
+        this.entityManager.remove(this.entityManager.find(Student.class, id));
     }
 }
