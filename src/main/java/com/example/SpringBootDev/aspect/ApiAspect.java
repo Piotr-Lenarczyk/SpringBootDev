@@ -2,15 +2,14 @@ package com.example.SpringBootDev.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-@Order(1)
+@Order(2)
 // An Aspect is a Java class with a collection of advices
-public class LoggingAspect {
+public class ApiAspect {
     // Pointcut declaration - allows reusing a pointcut expression os multiple advices
     // @Pointcut("execution(* com.example.SpringBootDev..*(..))")
     // @Before("execution(* add*(com.example.SpringBootDev.entity.Account, boolean))")          // Matches on any method starting with "add" and taking Account and boolean as arguments
@@ -21,25 +20,9 @@ public class LoggingAspect {
     private void firstDeclaration() {
     }
 
-    @Before("processing()")
+    @Before("com.example.SpringBootDev.aspect.LoggingAspect.processing()")
     public void firstAdvice() {
-        System.out.println("=====> Calling logging advice on the method");
+        System.out.println("=====> Calling API advice on the method");
     }
 
-    @Pointcut("execution(* com.example.SpringBootDev.dao.*.*(..))")
-    public void daoLogging() {
-    }
-
-    @Pointcut("execution(* com.example.SpringBootDev.dao.*.set*(..))")
-    public void setter() {
-    }
-
-    @Pointcut("execution(* com.example.SpringBootDev.dao.*.get*(..))")
-    public void getter() {
-    }
-
-    // Combined pointcut expression
-    @Pointcut("daoLogging() && !(setter() || getter())")
-    public void processing() {
-    }
 }
