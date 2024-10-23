@@ -27,6 +27,12 @@ public class SpringBootDevApplication {
 		Account account = new Account();
 		accountDAO.addAccount(account, false);
 		accountDAO.noop();
+
+        accountDAO.getName();
+        accountDAO.getServiceCode();
+        accountDAO.setName("name");
+        accountDAO.setServiceCode("serviceCode");
+
 		membershipDAO.addMembership();
 		System.out.println(membershipDAO.skip());
 	}
